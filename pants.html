@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RICHE RACS | Pants</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --text: #f5f5f5;
+            --muted: #9a9a9a;
+            --accent: #d02d2d;
+            --panel: rgba(18, 18, 18, 0.95);
+            --panel-soft: rgba(24, 24, 24, 0.75);
+            --card: #121212;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        main {
+            flex: 1;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 34px;
+            background: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(14px);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #fff;
+        }
+
+        .brand svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #dcdcdc;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #fff;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 18px;
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        .toolbar span {
+            cursor: pointer;
+        }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 36px 80px;
+            background: radial-gradient(circle at 20% 40%, rgba(255,255,255,0.08), transparent 24%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05), transparent 18%),
+                linear-gradient(180deg, rgba(12,12,12,0.98) 0%, rgba(10,10,10,0.98) 100%),
+                url('earth-bg.png') center / cover no-repeat;
+            background-attachment: fixed;
+        }
+        
+
+        .hero-copy {
+            max-width: 680px;
+            padding: 44px 44px 42px;
+            background: rgba(16,16,16,0.92);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.24);
+        }
+
+        .hero-copy h1 {
+            margin: 0 0 22px;
+            font-size: clamp(3.4rem, 5vw, 5.8rem);
+            line-height: 0.9;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .hero-copy p {
+            margin: 0;
+            color: #c0c0c0;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .hero-copy .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-size: 0.78rem;
+        }
+
+        .hero-copy .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        main {
+            padding: 60px 36px 90px;
+            background: #0f0f0f;
+            color: #f5f5f5;
+        }
+
+        .section-head {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        .home-categories {
+            max-width: 1200px;
+            margin: 0 auto 56px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            padding: 0 10px;
+        }
+
+        .category-card {
+            background: #121212;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 24px;
+            padding: 24px 24px 22px;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.14);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .category-card h3 {
+            margin: 0;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #fff;
+        }
+
+        .category-card a {
+            color: #fff;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            text-decoration: none;
+            opacity: 0.85;
+        }
+
+        .category-card a:hover {
+            opacity: 1;
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-size: clamp(2rem, 3vw, 3rem);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .section-head span {
+            color: #8f8f8f;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #121212;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 24px;
+            padding: 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+            overflow: hidden;
+            transition: transform 180ms ease, border-color 180ms ease;
+        }
+
+        .card-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 24px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .badge {
+            display: inline-block;
+            margin-bottom: 18px;
+            background: var(--accent);
+            color: #fff;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 24px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #252525 55%, #3b3b53 100%);
+            display: grid;
+            place-items: center;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            text-align: center;
+            padding: 16px;
+        }
+
+        .product-label {
+            margin: 0;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #f5f5f5;
+        }
+
+        .product-color {
+            margin: 8px 0 0;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: #8c8c8c;
+            letter-spacing: 0.08em;
+        }
+
+        .product-price {
+            margin: 14px 0 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .contact-panel {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 28px 38px;
+            background: #121212;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .contact-panel form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .contact-panel label {
+            display: grid;
+            gap: 10px;
+            font-weight: 700;
+            color: #f5f5f5;
+            font-size: 0.92rem;
+        }
+
+        .contact-panel input,
+        .contact-panel textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #2b2b2b;
+            border-radius: 16px;
+            background: #080808;
+            color: #f5f5f5;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .contact-panel textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .contact-panel button {
+            width: max-content;
+            border: none;
+            background: #fff;
+            color: #111;
+            padding: 16px 26px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            transition: transform 160ms ease;
+        }
+
+        .contact-panel button:hover {
+            transform: translateY(-1px);
+        }
+
+        .hero h2 {
+            margin: 0 0 16px;
+            font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            margin: 0;
+            color: #a8a8a8;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            margin-bottom: 18px;
+            background: var(--accent);
+            color: #fff;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        footer {
+            background: #050505;
+            color: #999;
+            padding: 46px 36px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 26px;
+            align-items: start;
+        }
+
+        .footer-grid h3 {
+            margin: 0 0 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+            color: #b3b3b3;
+            font-size: 0.94rem;
+        }
+
+        .footer-grid .socials {
+            text-align: right;
+        }
+
+        .footer-grid .socials p {
+            margin: 0 0 14px;
+            color: #8d8d8d;
+        }
+
+        .social-list {
+            display: flex;
+            justify-content: flex-end;
+            gap: 18px;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+
+        .footer-bottom {
+            margin-top: 34px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: #555;
+            font-size: 0.88rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand"><svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><circle cx="48" cy="48" r="44"/><path d="M28 58 C32 30, 52 32, 58 48 C62 58, 44 68, 34 70 C48 72, 68 62, 66 46"/></svg> RICHE RACS</div>
+        <nav>
+            <a href="index.html">Home Page</a>
+            <a href="best-sellers.html">Best Sellers</a>
+            <a href="hoodies.html">Hoodies</a>
+            <a href="pants.html">Pants</a>
+            <a href="accessories.html">Accessories</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="toolbar"><span>🔍</span><span>👤</span><span>🛒</span></div>
+    </header>
+    <section class="hero">
+        <div class="hero-copy">
+            <div class="hero-badge">Premium Collection</div>
+            <h1>Pants</h1>
+            <p>Discover premium cuts with comfortable materials and clean styling. Designed to match the Riche Racs aesthetic with everyday versatility.</p>
+        </div>
+    </section>
+    <main>
+        <div class="products">
+            <article class="card">
+                <a class="card-link" href="black-crewneck.html">
+                    <span class="badge">Sale</span>
+                    <div class="product-image">TEMPLATE CLOTHING</div>
+                    <p class="product-label">Black Crewneck</p>
+                    <p class="product-color">Slim cut finish</p>
+                    <p class="product-price">$58 USD</p>
+                </a>
+            </article>
+            <article class="card">
+                <a class="card-link" href="grey-crewneck.html">
+                    <span class="badge">Sale</span>
+                    <div class="product-image">TEMPLATE CLOTHING</div>
+                    <p class="product-label">Grey Crewneck</p>
+                    <p class="product-color">Layer-ready essentials</p>
+                    <p class="product-price">$55 USD</p>
+                </a>
+            </article>
+            <article class="card">
+                <a class="card-link" href="blue-crewneck.html">
+                    <span class="badge">Sale</span>
+                    <div class="product-image">TEMPLATE CLOTHING</div>
+                    <p class="product-label">Blue Crewneck</p>
+                    <p class="product-color">Relaxed streetwear fit</p>
+                    <p class="product-price">$60 USD</p>
+                </a>
+            </article>
+            <article class="card">
+                <a class="card-link" href="red-crewneck.html">
+                    <span class="badge">Sale</span>
+                    <div class="product-image">TEMPLATE CLOTHING</div>
+                    <p class="product-label">Red Crewneck</p>
+                    <p class="product-color">Bold seasonal color</p>
+                    <p class="product-price">$63 USD</p>
+                </a>
+            </article>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-grid">
+            <div><h3>Policies</h3><ul><li>Refund Policy</li><li>Shipping Policy</li><li>Terms of Service</li><li>Contact Information</li><li>Privacy Policy</li></ul></div>
+            <div class="socials"><p>Follow us</p><div class="social-list"><span>Instagram</span><span>Twitter</span><span>Facebook</span></div></div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Riche Racs</span><span>Terms and Policies</span></div>
+    </footer>
+</body>
+</html>
