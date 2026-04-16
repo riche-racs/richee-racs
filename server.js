@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
-app.post('/create-checkout-session', async (req, res) => {
+app.post(['/create-checkout-session', '/api/checkout'], async (req, res) => {
     const cart = Array.isArray(req.body.cart) ? req.body.cart : [];
     if (cart.length === 0) {
         return res.status(400).json({ error: 'Cart is empty' });
@@ -37,12 +37,17 @@ app.post('/create-checkout-session', async (req, res) => {
     }));
 
     try {
+        const origin = req.headers['x-forwarded-proto'] ? `${req.headers['x-forwarded-proto']}://${req.headers['x-forwarded-host'] || req.headers.host}` : domain;
+        const checkoutDomain = process.env.DOMAIN || origin;
+        const successUrl = `${checkoutDomain}/success.html`;
+        const cancelUrl = `${checkoutDomain}/cancel.html`;
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'payment',
             line_items,
-            success_url: `${domain}/success.html`,
-            cancel_url: `${domain}/cancel.html`
+            success_url: successUrl,
+            cancel_url: cancelUrl
         });
 
         res.json({ sessionId: session.id });

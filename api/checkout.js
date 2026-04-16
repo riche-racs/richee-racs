@@ -40,13 +40,19 @@ export default async function handler(req, res) {
     }));
 
     try {
-        const domain = process.env.DOMAIN || 'http://localhost:3000';
+        const protocol = req.headers['x-forwarded-proto'] || 'https';
+        const host = req.headers['x-forwarded-host'] || req.headers.host;
+        const fallbackDomain = `${protocol}://${host}`;
+        const domain = process.env.DOMAIN || fallbackDomain;
+        const successUrl = `${domain}/success.html`;
+        const cancelUrl = `${domain}/cancel.html`;
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'payment',
             line_items,
-            success_url: `${domain}/success.html`,
-            cancel_url: `${domain}/cancel.html`
+            success_url: successUrl,
+            cancel_url: cancelUrl
         });
 
         return res.status(200).json({ sessionId: session.id });

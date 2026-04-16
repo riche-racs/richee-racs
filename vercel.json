@@ -2,11 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/checkout.js",
+      "src": "api/**/*.js",
       "use": "@vercel/node"
     },
     {
-      "src": "*.html",
+      "src": "**/*",
       "use": "@vercel/static"
     }
   ],
