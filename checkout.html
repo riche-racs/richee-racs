@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | RICHE RACS</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --panel: rgba(18, 18, 18, 0.96);
+            --text: #f5f5f5;
+            --muted: #9a9a9a;
+            --accent: #d02d2d;
+            --border: rgba(255,255,255,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, #070707 0%, #040404 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 34px;
+            background: rgba(10,10,10,0.96);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 10;
+        }
+        .brand { font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; }
+        nav { display: flex; gap: 18px; flex-wrap: wrap; }
+        nav a { color: #ccc; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.14em; }
+        nav a:hover { color: #fff; }
+        main { flex: 1; padding: 46px 34px 60px; }
+        .page-head { max-width: 1200px; margin: 0 auto 30px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+        .page-head h1 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); }
+        .checkout-panel { max-width: 1200px; margin: 0 auto; display: grid; gap: 24px; }
+        .checkout-details { background: var(--panel); border: 1px solid var(--border); border-radius: 28px; padding: 24px; display: grid; gap: 22px; }
+        .checkout-item { display: flex; justify-content: space-between; gap: 18px; padding: 16px 18px; border-radius: 22px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
+        .checkout-item strong { display: block; margin-bottom: 6px; }
+        .checkout-summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px; border-radius: 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+        .checkout-summary span { color: var(--muted); }
+        .btn-primary { width: 100%; border: none; border-radius: 999px; padding: 18px 26px; background: var(--accent); color: #fff; text-transform: uppercase; letter-spacing: 0.12em; cursor: pointer; font-weight: 700; }
+        .note-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; padding: 20px; color: #ccc; }
+        .note-box strong { color: #fff; }
+        .empty-notice { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 28px; padding: 34px 28px; text-align: center; color: #ccc; }
+        .empty-notice a { color: var(--accent); text-decoration: none; }
+        @media (max-width: 820px) { .checkout-item { flex-direction: column; align-items: flex-start; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">RICHE RACS</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="best-sellers.html">Best Sellers</a>
+            <a href="hoodies.html">Hoodies</a>
+            <a href="pants.html">Pants</a>
+            <a href="accessories.html">Accessories</a>
+            <a href="cart.html">Cart</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <div class="page-head">
+            <div>
+                <h1>Checkout</h1>
+                <p style="margin: 0; color: #999;">Review your order and proceed to Stripe for a secure, encrypted payment experience. Your card details are processed directly by Stripe and never stored on this site.</p>
+            </div>
+        </div>
+        <div id="no-cart-notice" class="empty-notice">
+            <p>Your cart is empty. <a href="index.html">Add products</a> before checking out.</p>
+        </div>
+        <div id="checkout-container" class="checkout-panel">
+            <div class="checkout-details">
+                <div id="checkout-items"></div>
+                <div class="checkout-summary">
+                    <span>Order total</span>
+                    <strong id="checkout-total">$0.00</strong>
+                </div>
+            </div>
+                <div class="note-box">
+                <strong>Secure payment:</strong> Card details are handled by Stripe in a secure checkout experience.
+            </div>
+            <button id="checkout-button" class="btn-primary">Proceed to secure payment</button>
+        </div>
+    </main>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="cart.js" defer></script>
+</body>
+</html>

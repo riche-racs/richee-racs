@@ -207,13 +207,14 @@
             <a href="hoodies.html">Hoodies</a>
             <a href="pants.html">Pants</a>
             <a href="accessories.html">Accessories</a>
+            <a href="cart.html">Cart</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
 
     <main>
         <div class="product-page">
-            <div class="product-card">
+            <div class="product-card" data-product-id="grey-crewneck" data-product-name="Grey Crewneck" data-product-price="52">
                 <div class="product-image">Grey Crewneck</div>
                 <div class="product-info">
                     <h1>Grey Crewneck</h1>
@@ -225,10 +226,10 @@
                     <fieldset class="product-options">
                         <legend>Size</legend>
                         <div class="size-options" aria-label="Size selection">
-                            <button class="active">Small</button>
-                            <button class="sold-out" data-soldout="true">Medium</button>
+                            <button class="sold-out" data-soldout="true">Small</button>
+                            <button class="active">Medium</button>
                             <button>Large</button>
-                            <button>X-Large</button>
+                            <button class="sold-out" data-soldout="true">X-Large</button>
                         </div>
                     </fieldset>
                     <div class="action-row">
@@ -285,21 +286,6 @@
             <span>Terms and Policies</span>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const sizeButtons = document.querySelectorAll('.size-options button');
-            sizeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    if (button.dataset.soldout === 'true') {
-                        button.classList.add('attempted');
-                        setTimeout(() => button.classList.remove('attempted'), 250);
-                        return;
-                    }
-                    sizeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                });
-            });
-        });
-    </script>
+    <script src="cart.js" defer></script>
 </body>
 </html>
