@@ -80,8 +80,8 @@
         .price-row .meta { color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.82rem; }
         .product-info p { margin: 0; color: #c4c4c4; line-height: 1.9; max-width: 700px; }
 
-        .product-options { display: grid; gap: 18px; }
-        .product-options label { display: block; font-size: 0.84rem; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
+        .product-options { display: grid; gap: 18px; border: none; margin: 0; padding: 0; }
+        .product-options legend { display: block; font-size: 0.84rem; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
         .size-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
         .size-options button { position: relative; background: #111; border: 1px solid rgba(255,255,255,0.08); color: #fff; padding: 16px 0; font-size: 0.95rem; border-radius: 16px; cursor: pointer; transition: transform 160ms ease, border-color 160ms ease, background 160ms ease; }
         .size-options button:hover { transform: translateY(-1px); border-color: rgba(208,45,45,0.6); }
@@ -191,15 +191,15 @@
                         <span class="meta">Sale price</span>
                     </div>
                     <p>Vibrant red crewneck with premium streetwear appeal. This piece is designed to stand out while staying soft, comfortable, and easy to wear every day.</p>
-                    <div class="product-options">
-                        <label for="size">Size</label>
-                        <div class="size-options">
+                    <fieldset class="product-options">
+                        <legend>Size</legend>
+                        <div class="size-options" aria-label="Size selection">
                             <button class="active">Small</button>
                             <button class="sold-out" data-soldout="true">Medium</button>
                             <button>Large</button>
                             <button>X-Large</button>
                         </div>
-                    </div>
+                    </fieldset>
                     <div class="action-row">
                         <button class="btn-primary">Add to cart</button>
                         <button class="btn-secondary">Buy now</button>
@@ -210,11 +210,11 @@
                 <div>
                     <h3>Product details</h3>
                     <ul>
-                        <li>Premium heavyweight cotton
-                        <li>Soft brushed interior
-                        <li>Riche Racs logo detail
-                        <li>Streetwear fit
-                        <li>Easy machine wash care
+                        <li>Premium heavyweight cotton</li>
+                        <li>Soft brushed interior</li>
+                        <li>Riche Racs logo detail</li>
+                        <li>Streetwear fit</li>
+                        <li>Easy machine wash care</li>
                     </ul>
                 </div>
                 <div>
@@ -245,7 +245,7 @@
                 <p>Follow us</p>
                 <div class="social-list">
                     <a href="https://www.instagram.com/richeracs_/" target="_blank" style="color: #fff; text-decoration: none;">Instagram</a>
-                    <span>TikTok</span>
+                    <a href="https://www.tiktok.com/" target="_blank" style="color: #fff; text-decoration: none;">TikTok</a>
                 </div>
             </div>
         </div>
