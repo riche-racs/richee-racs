@@ -462,6 +462,43 @@
                 align-items: flex-start;
             }
         }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px 20px;
+            }
+            nav {
+                order: 2;
+                width: 100%;
+                justify-content: space-around;
+                gap: 16px;
+            }
+            .toolbar {
+                order: 1;
+                justify-content: center;
+            }
+            .brand {
+                order: 0;
+                justify-self: center;
+            }
+            .hero-copy h1 {
+                font-size: 2.5rem;
+            }
+            .home-categories {
+                grid-template-columns: 1fr;
+            }
+            .products {
+                grid-template-columns: 1fr;
+            }
+            .section-head {
+                text-align: center;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
