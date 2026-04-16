@@ -19,9 +19,5 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ],
-  "env": {
-    "STRIPE_SECRET_KEY": "@stripe_secret_key",
-    "DOMAIN": "https://riche-racs.vercel.app"
-  }
+  ]
 }
