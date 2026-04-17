@@ -223,7 +223,7 @@ function setupCheckoutPage() {
         checkoutButton.textContent = 'Starting checkout...';
 
         try {
-            const checkoutUrl = '/api/checkout';
+const checkoutUrl = '/api/checkout.js';
             const response = await fetch(checkoutUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
