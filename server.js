@@ -36,6 +36,21 @@ app.post(['/create-checkout-session', '/api/checkout'], async (req, res) => {
         quantity: item.quantity
     }));
 
+    const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    if (totalAmount > 0) {
+        line_items.push({
+            price_data: {
+                currency: 'usd',
+                product_data: {
+                    name: 'Shipping',
+                    description: 'Flat rate shipping'
+                },
+                unit_amount: 500 // $5.00
+            },
+            quantity: 1
+        });
+    }
+
     try {
         const origin = req.headers['x-forwarded-proto'] ? `${req.headers['x-forwarded-proto']}://${req.headers['x-forwarded-host'] || req.headers.host}` : domain;
         const checkoutDomain = process.env.DOMAIN || origin;

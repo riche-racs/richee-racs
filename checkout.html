@@ -53,7 +53,10 @@
         .note-box strong { color: #fff; }
         .empty-notice { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 28px; padding: 34px 28px; text-align: center; color: #ccc; }
         .empty-notice a { color: var(--accent); text-decoration: none; }
-        @media (max-width: 820px) { .checkout-item { flex-direction: column; align-items: flex-start; } }
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -82,6 +85,14 @@
         <div id="checkout-container" class="checkout-panel">
             <div class="checkout-details">
                 <div id="checkout-items"></div>
+                <div class="checkout-summary">
+                    <span>Subtotal</span>
+                    <strong id="checkout-subtotal">$0.00</strong>
+                </div>
+                <div class="checkout-summary">
+                    <span>Shipping</span>
+                    <strong>$5.00</strong>
+                </div>
                 <div class="checkout-summary">
                     <span>Order total</span>
                     <strong id="checkout-total">$0.00</strong>

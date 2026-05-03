@@ -114,12 +114,12 @@ function setupProductPage() {
 
     const productId = productCard.dataset.productId;
     const productName = productCard.dataset.productName;
-    const productPrice = Number(productCard.dataset.productPrice);
     const sizeButtons = document.querySelectorAll('.size-options button');
     const addButton = document.querySelector('.btn-primary');
     const buyButton = document.querySelector('.btn-secondary');
+    const priceDisplay = document.getElementById('product-price');
 
-    if (!productId || !productName || Number.isNaN(productPrice)) return;
+    if (!productId || !productName) return;
 
     sizeButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -130,6 +130,9 @@ function setupProductPage() {
             }
             sizeButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
+            if (priceDisplay && button.dataset.price) {
+                priceDisplay.textContent = `$${button.dataset.price} USD`;
+            }
         });
     });
 
@@ -138,13 +141,19 @@ function setupProductPage() {
         return active ? active.textContent.trim() : null;
     };
 
+    const getSelectedPrice = () => {
+        const active = document.querySelector('.size-options button.active');
+        return active && active.dataset.price ? Number(active.dataset.price) : null;
+    };
+
     const cartItemFromSelection = () => {
         const size = getSelectedSize();
-        if (!size) return null;
+        const price = getSelectedPrice();
+        if (!size || price === null) return null;
         return {
             id: `${productId}-${size}`,
             name: productName,
-            price: productPrice,
+            price: price,
             size,
             quantity: 1
         };
@@ -200,9 +209,12 @@ function setupCheckoutPage() {
     checkoutContainer.style.display = 'block';
 
     const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    summaryTotal.textContent = formatPrice(totalAmount);
+    const shipping = totalAmount > 0 ? 5 : 0;
+    const finalTotal = totalAmount + shipping;
+    summaryTotal.textContent = formatPrice(finalTotal);
 
     const itemList = document.getElementById('checkout-items');
+    const subtotalEl = document.getElementById('checkout-subtotal');
     if (itemList) {
         itemList.innerHTML = cart.map(item => `
             <div class="checkout-item">
@@ -215,6 +227,9 @@ function setupCheckoutPage() {
             </div>
         `).join('');
     }
+    if (subtotalEl) {
+        subtotalEl.textContent = formatPrice(totalAmount);
+    }
 
     const stripe = Stripe('pk_test_51TMkyz1Ydrg4bKlcGchJCnH6Vcn29O5VrJP3CcDBebeUqF0aGduZEmZt23eHbh4fNY2eqkZqKYv96ZyCcpYYyfF800pU10e0iU');
 
@@ -223,7 +238,7 @@ function setupCheckoutPage() {
         checkoutButton.textContent = 'Starting checkout...';
 
         try {
-const checkoutUrl = '/api/checkout.js';
+const checkoutUrl = '/api/checkout';
             const response = await fetch(checkoutUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

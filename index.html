@@ -250,6 +250,7 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.22);
             overflow: hidden;
             transition: transform 180ms ease, border-color 180ms ease;
+            opacity: 0;
         }
 
         .card-link {
@@ -463,42 +464,26 @@
             }
         }
 
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 12px;
-                padding: 16px 20px;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            nav {
-                order: 2;
-                width: 100%;
-                justify-content: space-around;
-                gap: 16px;
-            }
-            .toolbar {
-                order: 1;
-                justify-content: center;
-            }
-            .brand {
-                order: 0;
-                justify-self: center;
-            }
-            .hero-copy h1 {
-                font-size: 2.5rem;
-            }
-            .home-categories {
-                grid-template-columns: 1fr;
-            }
-            .products {
-                grid-template-columns: 1fr;
-            }
-            .section-head {
-                text-align: center;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        .card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
@@ -544,40 +529,20 @@
             <article class="card">
                 <a class="card-link" href="black-crewneck.html">
                     <span class="badge">Sale</span>
-                    <div class="product-image">TEMPLATE CLOTHING</div>
+                    <div class="product-image" style="background-image: url('https://scontent.fsan1-2.fna.fbcdn.net/v/t1.15752-9/684876650_26959357160326069_551800821784739598_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=psUrzWBvIbEQ7kNvwHLavr0&_nc_oc=AdouqdmvuOCvxudPYDVPKWMrtGMzSFP1SACxcUwtUzgxbJiu2ikUq4NrF6QYiC_oOqXrUTAEvgjmeWjfSjAlEBUM&_nc_zt=23&_nc_ht=scontent.fsan1-2.fna&_nc_ss=786a8&oh=03_Q7cD5QE3j53RGDme3X1PAwwcZDdb0JQjowxIElII9wLAQoqgCw&oe=6A1F2B31'); background-size: cover; background-position: center; color: transparent;">TEMPLATE CLOTHING</div>
                     <p class="product-label">Black Crewneck</p>
-                    <p class="product-color">TEMP DESC</p>
-                    <p class="product-price">$48 USD</p>
+                    <p class="product-color">S/M: $25 | L: $28</p>
+                    <p class="product-price">$25 USD</p>
                 </a>
             </article>
 
             <article class="card">
-                <a class="card-link" href="grey-crewneck.html">
+                <a class="card-link" href="white-crewneck.html">
                     <span class="badge">Sale</span>
-                    <div class="product-image">TEMPLATE CLOTHING</div>
-                    <p class="product-label">Grey Crewneck</p>
-                    <p class="product-color">TEMP DESC</p>
-                    <p class="product-price">$52 USD</p>
-                </a>
-            </article>
-
-            <article class="card">
-                <a class="card-link" href="blue-crewneck.html">
-                    <span class="badge">Sale</span>
-                    <div class="product-image">TEMPLATE CLOTHING</div>
-                    <p class="product-label">Blue Crewneck</p>
-                    <p class="product-color">TEMP DESC</p>
-                    <p class="product-price">$56 USD</p>
-                </a>
-            </article>
-
-            <article class="card">
-                <a class="card-link" href="red-crewneck.html">
-                    <span class="badge">Sale</span>
-                    <div class="product-image">TEMPLATE CLOTHING</div>
-                    <p class="product-label">Red Crewneck</p>
-                    <p class="product-color">TEMP DESC</p>
-                    <p class="product-price">$60 USD</p>
+                    <div class="product-image" style="background-image: url('https://scontent.fsan1-1.fna.fbcdn.net/v/t1.15752-9/679765074_891048093950273_466593820685972280_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3BfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=SE_WubEmRjkQ7kNvwFUE227&_nc_oc=AdrLeHu5jAWd8ym3f_3pROQEtFAHaCDvup6H_WCUy-lv0L1XfZeY4F0EnO3iTn_bCe3xCRQea8iC8cHQLO2gjmOt&_nc_zt=23&_nc_ht=scontent.fsan1-1.fna&_nc_ss=786a8&oh=03_Q7cD5QE-gq53RnuuuLsa1agIBVBCHD9V9JCcOtKpN3iGH-fx_w&oe=6A1F1BEA'); background-size: cover; background-position: center; color: transparent;">TEMPLATE CLOTHING</div>
+                    <p class="product-label">White Crewneck</p>
+                    <p class="product-color">S/M: $25 | L: $28</p>
+                    <p class="product-price">$25 USD</p>
                 </a>
             </article>
         </div>
