@@ -42,7 +42,7 @@
         }
 
         .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; }
-        .brand svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; }
+        .brand svg, .brand img { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; }
         nav { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
         nav a { color: #ccc; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.14em; }
         nav a:hover { color: #fff; }
@@ -198,9 +198,7 @@
 </head>
 <body>
     <header>
-        <div class="brand">
-            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><circle cx="48" cy="48" r="44"/><path d="M28 58 C32 30, 52 32, 58 48 C62 58, 44 68, 34 70 C48 72, 68 62, 66 46"/></svg>
-            RICHE RACS
+        <div class="brand"><img class="logo" src="logo.svg" alt="Riche Racs logo"> RICHE RACS
         </div>
         <nav>
             <a href="index.html">Home</a>
@@ -219,16 +217,16 @@
                 <div class="product-info">
                     <h1>Black Crewneck</h1>
                     <div class="price-row">
-                        <span class="price" id="product-price">$25 USD</span>
+                        <span class="price" id="product-price">$45 USD</span>
                         <span class="meta">Select size for price</span>
                     </div>
                     <p>Back by popular demand, this premium Riche Racs crewneck features bold contrast print, a structured fit, and soft heavyweight cotton for streetwear-ready comfort.</p>
                     <fieldset class="product-options">
                         <legend>Size</legend>
                         <div class="size-options" aria-label="Size selection">
-                            <button data-price="25">Small</button>
-                            <button class="active" data-price="25">Medium</button>
-                            <button data-price="28">Large</button>
+                            <button data-price="45">Small</button>
+                            <button class="active" data-price="45">Medium</button>
+                            <button data-price="48">Large</button>
                         </div>
                     </fieldset>
                     <div class="action-row">

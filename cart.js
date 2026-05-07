@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'richeRacsCart';
+const SHIPPING_KEY = 'richeRacsShipping';
 
 function getCart() {
     try {
@@ -10,6 +11,18 @@ function getCart() {
 
 function saveCart(cart) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+}
+
+function getShippingInfo() {
+    try {
+        return JSON.parse(localStorage.getItem(SHIPPING_KEY) || 'null');
+    } catch (error) {
+        return null;
+    }
+}
+
+function saveShippingInfo(info) {
+    localStorage.setItem(SHIPPING_KEY, JSON.stringify(info));
 }
 
 function formatPrice(value) {
@@ -50,6 +63,107 @@ function updateCartItemQuantity(index, delta) {
 function buildCartSummary(cart) {
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     return formatPrice(total);
+}
+
+function renderShippingSummary(shipping) {
+    const container = document.getElementById('saved-shipping');
+    if (!container) return;
+
+    if (!shipping) {
+        container.innerHTML = '<p style="margin:0; color:#ddd;">Shipping information not found. Please fill it out on the shipping page before continuing.</p>';
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="checkout-item" style="flex-direction:column; gap:12px; padding:18px;">
+            <div><strong>${shipping.name}</strong></div>
+            <div>${shipping.line1}${shipping.line2 ? ', ' + shipping.line2 : ''}</div>
+            <div>${shipping.city}, ${shipping.state} ${shipping.postal_code}</div>
+            <div>${shipping.country}</div>
+            <div>${shipping.email}</div>
+            ${shipping.phone ? `<div>${shipping.phone}</div>` : ''}
+        </div>
+    `;
+}
+
+function renderShippingForm(shipping) {
+    if (!shipping) return;
+    const fieldMap = {
+        'shipping-name': 'name',
+        'shipping-email': 'email',
+        'shipping-phone': 'phone',
+        'shipping-line1': 'line1',
+        'shipping-line2': 'line2',
+        'shipping-city': 'city',
+        'shipping-state': 'state',
+        'shipping-postal-code': 'postal_code',
+        'shipping-country': 'country'
+    };
+    Object.entries(fieldMap).forEach(([id, key]) => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.value = shipping[key] || '';
+        }
+    });
+}
+
+function setupShippingPage() {
+    const shippingForm = document.getElementById('shipping-form');
+    const emptyNotice = document.getElementById('shipping-empty');
+    const cartSummary = document.getElementById('shipping-order-summary');
+    const shipping = getShippingInfo();
+    const cart = getCart();
+
+    if (!shippingForm || !cartSummary || !emptyNotice) return;
+
+    if (cart.length === 0) {
+        shippingForm.style.display = 'none';
+        emptyNotice.style.display = 'block';
+        return;
+    }
+
+    emptyNotice.style.display = 'none';
+    shippingForm.style.display = 'grid';
+
+    const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    cartSummary.textContent = `${formatPrice(totalAmount)} + $5.00 shipping`;
+    renderShippingForm(shipping);
+
+    const submitButton = document.getElementById('shipping-submit');
+    if (submitButton) {
+        submitButton.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const newShipping = {
+                name: document.getElementById('shipping-name')?.value.trim(),
+                email: document.getElementById('shipping-email')?.value.trim(),
+                phone: document.getElementById('shipping-phone')?.value.trim(),
+                line1: document.getElementById('shipping-line1')?.value.trim(),
+                line2: document.getElementById('shipping-line2')?.value.trim(),
+                city: document.getElementById('shipping-city')?.value.trim(),
+                state: document.getElementById('shipping-state')?.value.trim(),
+                postal_code: document.getElementById('shipping-postal-code')?.value.trim(),
+                country: document.getElementById('shipping-country')?.value
+            };
+
+            const requiredFields = [
+                newShipping.name,
+                newShipping.email,
+                newShipping.line1,
+                newShipping.city,
+                newShipping.postal_code,
+                newShipping.country
+            ];
+
+            if (requiredFields.some(value => !value)) {
+                alert('Please complete all required shipping fields before continuing.');
+                return;
+            }
+
+            saveShippingInfo(newShipping);
+            window.location.href = 'checkout.html';
+        });
+    }
 }
 
 function renderCartItems() {
@@ -146,6 +260,11 @@ function setupProductPage() {
         return active && active.dataset.price ? Number(active.dataset.price) : null;
     };
 
+    const initialPrice = getSelectedPrice();
+    if (priceDisplay && initialPrice !== null) {
+        priceDisplay.textContent = `$${initialPrice} USD`;
+    }
+
     const cartItemFromSelection = () => {
         const size = getSelectedSize();
         const price = getSelectedPrice();
@@ -195,22 +314,37 @@ function setupCheckoutPage() {
     const summaryTotal = document.getElementById('checkout-total');
     const checkoutButton = document.getElementById('checkout-button');
     const noCartNotice = document.getElementById('no-cart-notice');
+    const shippingNotice = document.getElementById('checkout-shipping-warning');
+    const shippingSummary = document.getElementById('checkout-shipping');
 
-    if (!checkoutContainer || !checkoutButton || !summaryTotal || !noCartNotice) return;
+    if (!checkoutContainer || !checkoutButton || !summaryTotal || !noCartNotice || !shippingNotice || !shippingSummary) return;
 
     const cart = getCart();
     if (cart.length === 0) {
         checkoutContainer.style.display = 'none';
         noCartNotice.style.display = 'block';
+        shippingNotice.style.display = 'none';
         return;
     }
 
     noCartNotice.style.display = 'none';
     checkoutContainer.style.display = 'block';
 
+    const shipping = getShippingInfo();
+    if (!shipping) {
+        shippingNotice.style.display = 'block';
+        shippingSummary.style.display = 'none';
+        checkoutButton.disabled = true;
+        return;
+    }
+
+    shippingNotice.style.display = 'none';
+    shippingSummary.style.display = 'block';
+    renderShippingSummary(shipping);
+
     const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const shipping = totalAmount > 0 ? 5 : 0;
-    const finalTotal = totalAmount + shipping;
+    const shippingCost = totalAmount > 0 ? 5 : 0;
+    const finalTotal = totalAmount + shippingCost;
     summaryTotal.textContent = formatPrice(finalTotal);
 
     const itemList = document.getElementById('checkout-items');
@@ -238,11 +372,11 @@ function setupCheckoutPage() {
         checkoutButton.textContent = 'Starting checkout...';
 
         try {
-const checkoutUrl = '/api/checkout';
+            const checkoutUrl = '/api/checkout';
             const response = await fetch(checkoutUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ cart })
+                body: JSON.stringify({ cart, shipping })
             });
 
             const data = await response.json();
@@ -267,6 +401,7 @@ const checkoutUrl = '/api/checkout';
 function initPage() {
     setupProductPage();
     setupCartPage();
+    setupShippingPage();
     setupCheckoutPage();
 }
 

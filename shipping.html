@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Information | RICHE RACS</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --panel: rgba(18, 18, 18, 0.96);
+            --text: #f5f5f5;
+            --muted: #9a9a9a;
+            --accent: #d02d2d;
+            --border: rgba(255,255,255,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, #070707 0%, #040404 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 34px;
+            background: rgba(10,10,10,0.96);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 10;
+        }
+        .brand { font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; }
+        nav { display: flex; gap: 18px; flex-wrap: wrap; }
+        nav a { color: #ccc; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.14em; }
+        nav a:hover { color: #fff; }
+        main { flex: 1; padding: 46px 34px 60px; }
+        .page-head { max-width: 1200px; margin: 0 auto 30px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+        .page-head h1 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); }
+        .shipping-panel { max-width: 1200px; margin: 0 auto; display: grid; gap: 24px; }
+        .shipping-card { background: var(--panel); border: 1px solid var(--border); border-radius: 28px; padding: 24px; display: grid; gap: 20px; }
+        .shipping-grid { display: grid; gap: 18px; }
+        .shipping-row { display: grid; gap: 8px; }
+        label { font-size: 0.95rem; color: #ccc; }
+        input, select { width: 100%; border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; background: rgba(255,255,255,0.03); color: #f5f5f5; padding: 14px 16px; font-size: 1rem; }
+        input::placeholder { color: rgba(255,255,255,0.55); }
+        .summary-card { display: grid; gap: 12px; padding: 22px; border-radius: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+        .summary-card strong { display: block; color: #fff; }
+        .note-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; padding: 20px; color: #ccc; }
+        .btn-primary { width: 100%; border: none; border-radius: 999px; padding: 18px 26px; background: var(--accent); color: #fff; text-transform: uppercase; letter-spacing: 0.12em; cursor: pointer; font-weight: 700; }
+        .empty-notice { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 28px; padding: 34px 28px; text-align: center; color: #ccc; }
+        .empty-notice a { color: var(--accent); text-decoration: none; }
+        @media (min-width: 900px) { .shipping-panel { grid-template-columns: 1fr 360px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand"><img class="logo" src="logo.svg" alt="Riche Racs logo">RICHE RACS</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="best-sellers.html">Best Sellers</a>
+            <a href="hoodies.html">Hoodies</a>
+            <a href="pants.html">Pants</a>
+            <a href="accessories.html">Accessories</a>
+            <a href="cart.html">Cart</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <div class="page-head">
+            <div>
+                <h1>Shipping Information</h1>
+                <p style="margin: 0; color: #999;">Enter your shipping address and contact details first, then continue to payment.</p>
+            </div>
+        </div>
+        <div id="shipping-empty" class="empty-notice">
+            <p>Your cart is empty. <a href="index.html">Add products</a> before checkout.</p>
+        </div>
+        <div class="shipping-panel">
+            <form id="shipping-form" class="shipping-card">
+                <div class="shipping-grid">
+                    <div class="shipping-row">
+                        <label for="shipping-name">Full name</label>
+                        <input id="shipping-name" type="text" placeholder="Jane Doe" autocomplete="name">
+                    </div>
+                    <div class="shipping-row">
+                        <label for="shipping-email">Email address</label>
+                        <input id="shipping-email" type="email" placeholder="jane@example.com" autocomplete="email">
+                    </div>
+                    <div class="shipping-row">
+                        <label for="shipping-phone">Phone number</label>
+                        <input id="shipping-phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel">
+                    </div>
+                    <div class="shipping-row">
+                        <label for="shipping-line1">Street address</label>
+                        <input id="shipping-line1" type="text" placeholder="123 Main St" autocomplete="street-address">
+                    </div>
+                    <div class="shipping-row">
+                        <label for="shipping-line2">Apartment, suite, etc.</label>
+                        <input id="shipping-line2" type="text" placeholder="Suite 200" autocomplete="address-line2">
+                    </div>
+                    <div class="shipping-row">
+                        <label for="shipping-city">City</label>
+                        <input id="shipping-city" type="text" placeholder="Los Angeles" autocomplete="address-level2">
+                    </div>
+                    <div class="shipping-row">
+                        <label for="shipping-state">State / Province</label>
+                        <input id="shipping-state" type="text" placeholder="CA" autocomplete="address-level1">
+                    </div>
+                    <div class="shipping-row">
+                        <label for="shipping-postal-code">Postal code</label>
+                        <input id="shipping-postal-code" type="text" placeholder="90001" autocomplete="postal-code">
+                    </div>
+                    <div class="shipping-row">
+                        <label for="shipping-country">Country</label>
+                        <select id="shipping-country" autocomplete="country">
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="GB">United Kingdom</option>
+                            <option value="AU">Australia</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="note-box">We’ll send your order summary to the email you provide. Shipping costs are added on the next page.</p>
+                <button id="shipping-submit" class="btn-primary">Continue to payment</button>
+            </form>
+            <div class="summary-card">
+                <strong>Order summary</strong>
+                <p id="shipping-order-summary">Loading cart total...</p>
+                <p>Once you continue, you will confirm payment and complete your order.</p>
+            </div>
+        </div>
+    </main>
+    <script src="cart.js" defer></script>
+</body>
+</html>

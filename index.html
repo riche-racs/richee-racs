@@ -59,7 +59,7 @@
             color: #fff;
         }
 
-        .brand svg {
+        .brand svg, .brand img {
             width: 18px;
             height: 18px;
             fill: none;
@@ -236,8 +236,8 @@
 
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 8px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -245,7 +245,7 @@
         .card {
             background: #121212;
             border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 24px;
+            border-radius: 16px;
             padding: 0;
             box-shadow: 0 20px 60px rgba(0,0,0,0.22);
             overflow: hidden;
@@ -257,7 +257,7 @@
             display: block;
             width: 100%;
             height: 100%;
-            padding: 24px;
+            padding: 8px;
             color: inherit;
             text-decoration: none;
         }
@@ -269,51 +269,51 @@
 
         .badge {
             display: inline-block;
-            margin-bottom: 18px;
+            margin-bottom: 6px;
             background: var(--accent);
             color: #fff;
-            padding: 7px 14px;
+            padding: 5px 10px;
             border-radius: 999px;
-            font-size: 0.72rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
         }
 
         .product-image {
             width: 100%;
-            aspect-ratio: 1 / 1;
-            border-radius: 24px;
+            aspect-ratio: 3 / 4;
+            border-radius: 8px;
             background: linear-gradient(180deg, #1a1a1a 0%, #252525 55%, #3b3b53 100%);
             display: grid;
             place-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 4px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.55rem;
             letter-spacing: 0.08em;
             font-weight: 700;
             text-align: center;
-            padding: 16px;
+            padding: 4px;
         }
 
         .product-label {
             margin: 0;
-            font-size: 0.95rem;
+            font-size: 0.65rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: #f5f5f5;
         }
 
         .product-color {
-            margin: 8px 0 0;
-            font-size: 0.78rem;
+            margin: 2px 0 0;
+            font-size: 0.6rem;
             text-transform: uppercase;
             color: #8c8c8c;
             letter-spacing: 0.08em;
         }
 
         .product-price {
-            margin: 14px 0 0;
-            font-size: 1rem;
+            margin: 4px 0 0;
+            font-size: 0.75rem;
             font-weight: 700;
             color: #fff;
         }
@@ -488,9 +488,7 @@
 </head>
 <body>
     <header>
-        <div class="brand">
-            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><circle cx="48" cy="48" r="44"/><path d="M28 58 C32 30, 52 32, 58 48 C62 58, 44 68, 34 70 C48 72, 68 62, 66 46"/></svg>
-            RICHE RACS
+        <div class="brand"><img class="logo" src="logo.svg" alt="Riche Racs logo"> RICHE RACS
         </div>
         <nav>
             <a href="index.html">Home Page</a>
@@ -526,23 +524,15 @@
         </section>
 
         <div class="products">
-            <article class="card">
-                <a class="card-link" href="black-crewneck.html">
-                    <span class="badge">Sale</span>
-                    <div class="product-image" style="background-image: url('https://scontent.fsan1-2.fna.fbcdn.net/v/t1.15752-9/684876650_26959357160326069_551800821784739598_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=psUrzWBvIbEQ7kNvwHLavr0&_nc_oc=AdouqdmvuOCvxudPYDVPKWMrtGMzSFP1SACxcUwtUzgxbJiu2ikUq4NrF6QYiC_oOqXrUTAEvgjmeWjfSjAlEBUM&_nc_zt=23&_nc_ht=scontent.fsan1-2.fna&_nc_ss=786a8&oh=03_Q7cD5QE3j53RGDme3X1PAwwcZDdb0JQjowxIElII9wLAQoqgCw&oe=6A1F2B31'); background-size: cover; background-position: center; color: transparent;">TEMPLATE CLOTHING</div>
-                    <p class="product-label">Black Crewneck</p>
-                    <p class="product-color">S/M: $25 | L: $28</p>
-                    <p class="product-price">$25 USD</p>
-                </a>
-            </article>
+            
 
             <article class="card">
-                <a class="card-link" href="white-crewneck.html">
+                <a class="card-link" href="grey-crewneck.html">
                     <span class="badge">Sale</span>
-                    <div class="product-image" style="background-image: url('https://scontent.fsan1-1.fna.fbcdn.net/v/t1.15752-9/679765074_891048093950273_466593820685972280_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3BfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=SE_WubEmRjkQ7kNvwFUE227&_nc_oc=AdrLeHu5jAWd8ym3f_3pROQEtFAHaCDvup6H_WCUy-lv0L1XfZeY4F0EnO3iTn_bCe3xCRQea8iC8cHQLO2gjmOt&_nc_zt=23&_nc_ht=scontent.fsan1-1.fna&_nc_ss=786a8&oh=03_Q7cD5QE-gq53RnuuuLsa1agIBVBCHD9V9JCcOtKpN3iGH-fx_w&oe=6A1F1BEA'); background-size: cover; background-position: center; color: transparent;">TEMPLATE CLOTHING</div>
-                    <p class="product-label">White Crewneck</p>
-                    <p class="product-color">S/M: $25 | L: $28</p>
-                    <p class="product-price">$25 USD</p>
+                    <div class="product-image" style="background-image: url('https://scontent.fsan1-2.fna.fbcdn.net/v/t1.15752-9/694622871_980611554417491_1301547388832806269_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=e_uSfFzIuj8Q7kNvwGH6qal&_nc_oc=Ado5OnOAd5HHBE0YAqRSoKYv2O9_4QgizSnqgg1uZDQPbBrVTf4J6-IW74qG4belO-_jO6ebPd7FpGAGU6CKUmJ5&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fsan1-2.fna&_nc_ss=7a22e&oh=03_Q7cD5QFarxJ3mT0ERkFfa46QVo8hF3JX-wwWfHQLYq5L-7ogrw&oe=6A237A43'); background-size: cover; background-position: center; color: transparent;">TEMPLATE CLOTHING</div>
+                    <p class="product-label">Grey SD Riche Racs Shirt</p>
+                    <p class="product-color">Small / Medium / Large</p>
+                    <p class="product-price">$20 USD</p>
                 </a>
             </article>
         </div>

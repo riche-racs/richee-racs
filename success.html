@@ -9,6 +9,8 @@
         .card { max-width: 520px; width: 100%; padding: 32px; border-radius: 28px; background: rgba(18,18,18,0.96); border: 1px solid rgba(255,255,255,0.08); text-align: center; }
         h1 { margin: 0 0 18px; font-size: clamp(2rem, 4vw, 2.8rem); }
         p { color: #cfd0d5; line-height: 1.8; }
+        .note-box { margin-top: 24px; padding: 18px; border-radius: 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); color: #ddd; text-align: left; }
+        .note-box strong { color: #fff; }
         a { display: inline-block; margin-top: 26px; padding: 14px 24px; border-radius: 999px; background: #d02d2d; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; }
     </style>
 </head>
@@ -16,7 +18,31 @@
     <div class="card">
         <h1>Payment successful</h1>
         <p>Thanks for your order. Your payment has been completed successfully.</p>
+        <div id="success-shipping-info" class="note-box">Your shipping details will appear here.</div>
         <a href="index.html">Continue shopping</a>
     </div>
+    <script>
+        const shippingData = JSON.parse(localStorage.getItem('richeRacsShipping') || 'null');
+        const cartData = JSON.parse(localStorage.getItem('richeRacsCart') || '[]');
+        const shippingInfo = document.getElementById('success-shipping-info');
+        if (shippingInfo) {
+            if (shippingData) {
+                shippingInfo.innerHTML = `
+                    <strong>Shipping to:</strong>
+                    <div>${shippingData.name}</div>
+                    <div>${shippingData.line1}${shippingData.line2 ? ', ' + shippingData.line2 : ''}</div>
+                    <div>${shippingData.city}, ${shippingData.state} ${shippingData.postal_code}</div>
+                    <div>${shippingData.country}</div>
+                    <div>${shippingData.email}</div>
+                    ${shippingData.phone ? `<div>${shippingData.phone}</div>` : ''}
+                `;
+            } else {
+                shippingInfo.textContent = 'Shipping details were not found for this order.';
+            }
+        }
+        if (Array.isArray(cartData) && cartData.length) {
+            localStorage.removeItem('richeRacsCart');
+        }
+    </script>
 </body>
 </html>

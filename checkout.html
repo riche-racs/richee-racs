@@ -48,6 +48,9 @@
         .checkout-item strong { display: block; margin-bottom: 6px; }
         .checkout-summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px; border-radius: 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
         .checkout-summary span { color: var(--muted); }
+        .shipping-summary { display: grid; gap: 14px; padding: 20px; border-radius: 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+        .shipping-summary h2 { margin: 0 0 8px; }
+        .shipping-summary div { color: #ccc; line-height: 1.5; }
         .btn-primary { width: 100%; border: none; border-radius: 999px; padding: 18px 26px; background: var(--accent); color: #fff; text-transform: uppercase; letter-spacing: 0.12em; cursor: pointer; font-weight: 700; }
         .note-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; padding: 20px; color: #ccc; }
         .note-box strong { color: #fff; }
@@ -61,7 +64,7 @@
 </head>
 <body>
     <header>
-        <div class="brand">RICHE RACS</div>
+        <div class="brand"><img class="logo" src="logo.svg" alt="Riche Racs logo">RICHE RACS</div>
         <nav>
             <a href="index.html">Home</a>
             <a href="best-sellers.html">Best Sellers</a>
@@ -97,6 +100,14 @@
                     <span>Order total</span>
                     <strong id="checkout-total">$0.00</strong>
                 </div>
+            </div>
+            <div id="checkout-shipping" class="shipping-summary">
+                <h2>Shipping information</h2>
+                <div id="saved-shipping"></div>
+                <div><a href="shipping.html" style="color:#d02d2d; text-decoration:none;">Edit shipping details</a></div>
+            </div>
+            <div id="checkout-shipping-warning" class="note-box" style="display:none;">
+                <strong>Shipping details required.</strong> Please fill out your shipping information on the <a href="shipping.html" style="color:#d02d2d; text-decoration:none;">shipping page</a> before paying.
             </div>
                 <div class="note-box">
                 <strong>Secure payment:</strong> Card details are handled by Stripe in a secure checkout experience.

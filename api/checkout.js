@@ -18,9 +18,15 @@ module.exports = async (req, res) => {
     }
 
     const cart = Array.isArray(req.body.cart) ? req.body.cart : [];
-    
+    const shipping = req.body.shipping && typeof req.body.shipping === 'object' ? req.body.shipping : {};
+
     if (cart.length === 0) {
         return res.status(400).json({ error: 'Cart is empty' });
+    }
+
+    const requiredShipping = [shipping.name, shipping.email, shipping.line1, shipping.city, shipping.postal_code, shipping.country];
+    if (requiredShipping.some(value => !value)) {
+        return res.status(400).json({ error: 'Shipping details are incomplete' });
     }
 
     const line_items = cart.map(item => ({
@@ -35,6 +41,24 @@ module.exports = async (req, res) => {
         quantity: item.quantity
     }));
 
+    const metadata = {};
+    const metadataFields = {
+        name: 'shipping_name',
+        email: 'customer_email',
+        line1: 'shipping_address_line1',
+        line2: 'shipping_address_line2',
+        city: 'shipping_city',
+        state: 'shipping_state',
+        postal_code: 'shipping_postal_code',
+        country: 'shipping_country'
+    };
+
+    Object.entries(metadataFields).forEach(([field, key]) => {
+        if (shipping[field]) {
+            metadata[key] = shipping[field];
+        }
+    });
+
     try {
         const protocol = req.headers['x-forwarded-proto'] || 'https';
         const host = req.headers['x-forwarded-host'] || req.headers.host;
@@ -43,13 +67,23 @@ module.exports = async (req, res) => {
         const successUrl = `${domain}/success.html`;
         const cancelUrl = `${domain}/cancel.html`;
 
-        const session = await stripe.checkout.sessions.create({
+        const sessionConfig = {
             payment_method_types: ['card'],
             mode: 'payment',
             line_items,
+            shipping_address_collection: {
+                allowed_countries: ['US', 'CA', 'GB', 'AU'] // Add countries as needed
+            },
+            metadata,
             success_url: successUrl,
             cancel_url: cancelUrl
-        });
+        };
+
+        if (shipping.email) {
+            sessionConfig.customer_email = shipping.email;
+        }
+
+        const session = await stripe.checkout.sessions.create(sessionConfig);
 
         return res.status(200).json({ sessionId: session.id });
     } catch (error) {

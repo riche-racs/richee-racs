@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>White Crewneck | RICHE RACS</title>
+    <title>Grey SD Riche Racs Shirt | RICHE RACS</title>
     <style>
         :root {
             --bg: #050505;
@@ -48,29 +48,103 @@
         nav a:hover { color: #fff; }
 
         main { flex: 1; padding: 48px 34px 40px; }
-        .product-page { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; }
+        .product-page { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: 1fr 0.84fr; gap: 24px; }
 
         .product-card {
             background: rgba(18,18,18,0.95);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 32px;
-            padding: 32px;
+            border-radius: 24px;
+            padding: 22px;
             display: grid;
-            gap: 28px;
+            gap: 20px;
         }
 
         .product-image {
             position: relative;
-            border-radius: 28px;
-            min-height: 520px;
-            background: linear-gradient(180deg, #111 0%, #252537 100%);
+            border-radius: 24px;
+            min-height: 340px;
+            max-width: 700px;
+            width: 100%;
+            background: linear-gradient(180deg, #252525 0%, #0d0d0d 100%);
             display: grid;
             place-items: center;
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-size: 1.2rem;
-            padding: 24px;
+            letter-spacing: 0.08em;
+            font-size: 0.95rem;
+            padding: 14px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            display: block;
+            transition: opacity 220ms ease, transform 280ms ease;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(16, 16, 16, 0.78);
+            color: #fff;
+            font-size: 0.95rem;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: transform 180ms ease, background 180ms ease, opacity 180ms ease;
+            z-index: 2;
+        }
+
+        .gallery-arrow:hover {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.05);
+            background: rgba(24, 24, 24, 0.94);
+        }
+
+        .gallery-arrow.prev { left: 12px; }
+        .gallery-arrow.next { right: 12px; }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .image-gallery button {
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+            height: 76px;
+            transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+        }
+
+        .image-gallery button:hover {
+            transform: translateY(-2px);
+            border-color: rgba(208,45,45,0.7);
+        }
+
+        .image-gallery button.active {
+            border-color: #d02d2d;
+            background: rgba(208,45,45,0.14);
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
         }
 
         .product-info { display: grid; gap: 22px; }
@@ -212,21 +286,31 @@
 
     <main>
         <div class="product-page">
-            <div class="product-card" data-product-id="white-crewneck" data-product-name="White Crewneck">
-                <div class="product-image" style="background-image: url('https://scontent.fsan1-1.fna.fbcdn.net/v/t1.15752-9/679765074_891048093950273_466593820685972280_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=SE_WubEmRjkQ7kNvwFUE227&_nc_oc=AdrLeHu5jAWd8ym3f_3pROQEtFAHaCDvup6H_WCUy-lv0L1XfZeY4F0EnO3iTn_bCe3xCRQea8iC8cHQLO2gjmOt&_nc_zt=23&_nc_ht=scontent.fsan1-1.fna&_nc_ss=786a8&oh=03_Q7cD5QE-gq53RnuuuLsa1agIBVBCHD9V9JCcOtKpN3iGH-fx_w&oe=6A1F1BEA'); background-size: cover; background-position: center; color: transparent;">White Crewneck</div>
+            <div class="product-card" data-product-id="grey-crewneck" data-product-name="Grey SD Riche Racs Shirt">
+                <div class="product-image">
+                    <button class="gallery-arrow prev" type="button" aria-label="Previous image">&#10094;</button>
+                    <button class="gallery-arrow next" type="button" aria-label="Next image">&#10095;</button>
+                    <img src="https://scontent.fsan1-2.fna.fbcdn.net/v/t1.15752-9/694622871_980611554417491_1301547388832806269_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=e_uSfFzIuj8Q7kNvwGH6qal&_nc_oc=Ado5OnOAd5HHBE0YAqRSoKYv2O9_4QgizSnqgg1uZDQPbBrVTf4J6-IW74qG4belO-_jO6ebPd7FpGAGU6CKUmJ5&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fsan1-2.fna&_nc_ss=7a22e&oh=03_Q7cD5QFarxJ3mT0ERkFfa46QVo8hF3JX-wwWfHQLYq5L-7ogrw&oe=6A237A43" alt="Grey SD Riche Racs Shirt front">
+                </div>
+                <div class="image-gallery">
+                    <button type="button" class="thumbnail active"><img src="https://scontent.fsan1-2.fna.fbcdn.net/v/t1.15752-9/694622871_980611554417491_1301547388832806269_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=e_uSfFzIuj8Q7kNvwGH6qal&_nc_oc=Ado5OnOAd5HHBE0YAqRSoKYv2O9_4QgizSnqgg1uZDQPbBrVTf4J6-IW74qG4belO-_jO6ebPd7FpGAGU6CKUmJ5&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fsan1-2.fna&_nc_ss=7a22e&oh=03_Q7cD5QFarxJ3mT0ERkFfa46QVo8hF3JX-wwWfHQLYq5L-7ogrw&oe=6A237A43" alt="Grey SD Riche Racs Shirt front"></button>
+                    <button type="button" class="thumbnail"><img src="https://scontent.fsan1-1.fna.fbcdn.net/v/t1.15752-9/687800783_1296094291969517_752723902187134243_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=aTqmmc29bdEQ7kNvwHarjv0&_nc_oc=Adr5MPcMomOviISI_bIDlKblFcoxrxYZKJDWyUI_CiihovJ5qUli1b1wTOcuFzlOlQsx3wIIP0sJSQFemrbzQHMh&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fsan1-1.fna&_nc_ss=7a22e&oh=03_Q7cD5QHWgH4Nn4XRflkxmwZhSBvcEHMKFkhZjOtoY06_CapeSA&oe=6A235939" alt="Grey SD Riche Racs Shirt back"></button>
+                    <button type="button" class="thumbnail"><img src="https://scontent.fsan1-1.fna.fbcdn.net/v/t1.15752-9/690997142_1324689762916099_2292807078169733471_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=BUxhJyf_froQ7kNvwFzhIU6&_nc_oc=Adqhrofhv-HTj6nx1PPf44zqtJXj0iXNOBNgnb9Ud-saOQdfpuiquzUI0-6RXfqtdNOtPFAFaUXolPTrj3CBTs0B&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fsan1-1.fna&_nc_ss=7a22e&oh=03_Q7cD5QGV-hnpbgtIQJaBehkTkalyQsVmqb6PsDiorj12ZTBL1g&oe=6A23673B" alt="Model front"></button>
+                    <button type="button" class="thumbnail"><img src="https://scontent.fsan1-2.fna.fbcdn.net/v/t1.15752-9/682677881_1974992240072365_8312562882841376626_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=0024fc&_nc_ohc=m7zyUY2Z-1cQ7kNvwGCt_la&_nc_oc=Ado6eubl0fTTBQx-6pULUXi-pIzp3vKkdfWR5SRG6uHnwO3Knao8XPqjX4jrQzoX2mPgPum1bpjz8CHKiJLGHG--&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fsan1-2.fna&_nc_ss=7a22e&oh=03_Q7cD5QEvCmDTvZbgVYV__ZEeDcS3_4DdH0rNXN4LI3EbhDPUCQ&oe=6A2382C8" alt="Model back"></button>
+                </div>
                 <div class="product-info">
-                    <h1>White Crewneck</h1>
+                    <h1>Grey SD Riche Racs Shirt</h1>
                     <div class="price-row">
-                        <span class="price" id="product-price">$45 USD</span>
-                        <span class="meta">Select size for price</span>
+                        <span class="price">$20 USD</span>
+                        <span class="meta">Small, Medium, Large</span>
                     </div>
-                    <p>Back by popular demand, this premium Riche Racs crewneck features bold contrast print, a structured fit, and soft heavyweight cotton for streetwear-ready comfort.</p>
+                    <p>This soft grey shirt features the SD Riche Racs logo for a clean streetwear look. Available in Small, Medium and Large with a premium cotton feel.</p>
                     <fieldset class="product-options">
                         <legend>Size</legend>
                         <div class="size-options" aria-label="Size selection">
-                            <button data-price="45">Small</button>
-                            <button class="active" data-price="45">Medium</button>
-                            <button data-price="48">Large</button>
+                            <button data-price="20">Small</button>
+                            <button class="active" data-price="20">Medium</button>
+                            <button data-price="20">Large</button>
                         </div>
                     </fieldset>
                     <div class="action-row">
@@ -236,24 +320,13 @@
                 </div>
             </div>
             <div class="details-panel">
-                <div>
-                    <h3>Product details</h3>
-                    <ul>
-                        <li>Premium heavyweight cotton</li>
-                        <li>Soft brushed interior</li>
-                        <li>Riche Racs logo detail</li>
-                        <li>Streetwear fit</li>
-                        <li>Easy machine wash care</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Shipping & returns</h3>
-                    <ul>
-                        <li>Ships in 1-3 business days</li>
-                        <li>Free returns within 14 days</li>
-                        <li>Taxes calculated at checkout</li>
-                    </ul>
-                </div>
+                <h3>Product details</h3>
+                <ul>
+                    <li>Printed SD Riche Racs logo</li>
+                    <li>Soft premium cotton blend</li>
+                    <li>Unisex streetwear fit</li>
+                    <li>Three sizes available: S, M, L</li>
+                </ul>
             </div>
         </div>
     </main>
@@ -273,16 +346,74 @@
             <div class="socials">
                 <p>Follow us</p>
                 <div class="social-list">
-                    <a href="https://www.instagram.com/richeracs_/" target="_blank" style="color: #fff; text-decoration: none;">Instagram</a>
-                    <a href="https://www.tiktok.com/" target="_blank" style="color: #fff; text-decoration: none;">TikTok</a>
+                    <span>Instagram</span>
+                    <span>TikTok</span>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <span>© 2026 Riche Racs</span>
-            <span>Terms and Policies</span>
-        </div>
+        <div class="footer-bottom"><span>© 2026 Riche Racs</span><span>Terms and Policies</span></div>
     </footer>
+
     <script src="cart.js" defer></script>
+    <script defer>
+        const galleryCard = document.querySelector('.product-card');
+        if (galleryCard) {
+            const mainImage = galleryCard.querySelector('.product-image img');
+            const thumbnails = Array.from(galleryCard.querySelectorAll('.image-gallery button'));
+            const prevBtn = galleryCard.querySelector('.gallery-arrow.prev');
+            const nextBtn = galleryCard.querySelector('.gallery-arrow.next');
+            const imageUrls = thumbnails.map(thumb => thumb.querySelector('img').src);
+            let activeIndex = 0;
+            let autoAdvance = null;
+
+            const setActive = (index) => {
+                activeIndex = (index + imageUrls.length) % imageUrls.length;
+                mainImage.style.opacity = '0';
+                setTimeout(() => {
+                    mainImage.src = imageUrls[activeIndex];
+                    mainImage.style.opacity = '1';
+                }, 120);
+                thumbnails.forEach((thumb, thumbIndex) => {
+                    thumb.classList.toggle('active', thumbIndex === activeIndex);
+                });
+            };
+
+            thumbnails.forEach((thumb, thumbIndex) => {
+                thumb.addEventListener('click', () => {
+                    setActive(thumbIndex);
+                    resetAutoAdvance();
+                });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                setActive(activeIndex - 1);
+                resetAutoAdvance();
+            });
+            nextBtn.addEventListener('click', () => {
+                setActive(activeIndex + 1);
+                resetAutoAdvance();
+            });
+
+            const startAutoAdvance = () => {
+                autoAdvance = setInterval(() => setActive(activeIndex + 1), 4500);
+            };
+            const stopAutoAdvance = () => {
+                if (autoAdvance) {
+                    clearInterval(autoAdvance);
+                    autoAdvance = null;
+                }
+            };
+            const resetAutoAdvance = () => {
+                stopAutoAdvance();
+                startAutoAdvance();
+            };
+
+            galleryCard.addEventListener('mouseenter', stopAutoAdvance);
+            galleryCard.addEventListener('mouseleave', startAutoAdvance);
+
+            setActive(0);
+            startAutoAdvance();
+        }
+    </script>
 </body>
 </html>
